@@ -1,1 +1,1 @@
-Segmentation fault (core dumped)
+1 6 -9 77 189 90 150 110

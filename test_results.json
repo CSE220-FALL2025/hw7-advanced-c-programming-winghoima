@@ -1,7 +1,7 @@
 {
   "id": "Criterion v2.4.1",
-  "passed": 50,
-  "failed": 20,
+  "passed": 70,
+  "failed": 0,
   "errored": 0,
   "skipped": 0,
   "test_suites": [
@@ -23,12 +23,12 @@
           "status": "PASSED"
         },
         {
-          "name": "mult02",
+          "name": "mult01",
           "assertions": 1,
           "status": "PASSED"
         },
         {
-          "name": "mult01",
+          "name": "mult02",
           "assertions": 1,
           "status": "PASSED"
         },
@@ -62,12 +62,12 @@
           "status": "PASSED"
         },
         {
-          "name": "mult01",
+          "name": "mult02",
           "assertions": 3,
           "status": "PASSED"
         },
         {
-          "name": "mult02",
+          "name": "mult01",
           "assertions": 3,
           "status": "PASSED"
         },
@@ -120,12 +120,12 @@
           "status": "PASSED"
         },
         {
-          "name": "infix2postfix03",
+          "name": "infix2postfix02",
           "assertions": 1,
           "status": "PASSED"
         },
         {
-          "name": "infix2postfix02",
+          "name": "infix2postfix03",
           "assertions": 1,
           "status": "PASSED"
         },
@@ -252,17 +252,17 @@
           "status": "PASSED"
         },
         {
+          "name": "mult_mats03",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
           "name": "script11",
           "assertions": 1,
           "status": "PASSED"
         },
         {
           "name": "script10",
-          "assertions": 1,
-          "status": "PASSED"
-        },
-        {
-          "name": "mult_mats03",
           "assertions": 1,
           "status": "PASSED"
         },
@@ -295,170 +295,110 @@
     },
     {
       "name": "base_execute",
-      "passed": 0,
-      "failed": 20,
+      "passed": 20,
+      "failed": 0,
       "errored": 0,
       "skipped": 0,
       "tests": [
         {
           "name": "trans_mat03",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
+          "status": "PASSED"
         },
         {
           "name": "trans_mat02",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
+          "status": "PASSED"
         },
         {
           "name": "trans_mat01",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
+          "status": "PASSED"
         },
         {
           "name": "script20",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
+          "status": "PASSED"
         },
         {
           "name": "script19",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
+          "status": "PASSED"
         },
         {
           "name": "script18",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
+          "status": "PASSED"
         },
         {
           "name": "script17",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
+          "status": "PASSED"
         },
         {
           "name": "script16",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
+          "status": "PASSED"
         },
         {
           "name": "script15",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
-        },
-        {
-          "name": "script13",
-          "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
+          "status": "PASSED"
         },
         {
           "name": "script14",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
+          "status": "PASSED"
+        },
+        {
+          "name": "script13",
+          "assertions": 1,
+          "status": "PASSED"
         },
         {
           "name": "script12",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
+          "status": "PASSED"
         },
         {
           "name": "script11",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
+          "status": "PASSED"
         },
         {
           "name": "script10",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
+          "status": "PASSED"
         },
         {
           "name": "mult_mats03",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
-        },
-        {
-          "name": "mult_mats01",
-          "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
-        },
-        {
-          "name": "add_mats03",
-          "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
-        },
-        {
-          "name": "add_mats02",
-          "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
+          "status": "PASSED"
         },
         {
           "name": "mult_mats02",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
+          "status": "PASSED"
+        },
+        {
+          "name": "mult_mats01",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "add_mats02",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "add_mats03",
+          "assertions": 1,
+          "status": "PASSED"
         },
         {
           "name": "add_mats01",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:85: The output was not what was expected (diff exited with status 1)."
-          ]
+          "status": "PASSED"
         }
       ]
     },
@@ -470,17 +410,17 @@
       "skipped": 0,
       "tests": [
         {
-          "name": "expr03",
-          "assertions": 3,
-          "status": "PASSED"
-        },
-        {
           "name": "expr02",
           "assertions": 3,
           "status": "PASSED"
         },
         {
           "name": "expr01",
+          "assertions": 3,
+          "status": "PASSED"
+        },
+        {
+          "name": "expr03",
           "assertions": 3,
           "status": "PASSED"
         }

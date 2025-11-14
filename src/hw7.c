@@ -161,7 +161,7 @@ char* infix2postfix_sf(char *infix) { //4
     char *stack = malloc(length);
     int top = -1;
     while (*infix != '\0') {
-        if (*infix == ' ') {
+        if (*infix == ' ' || *infix == '\n') {
             infix++;
             continue;
         }
@@ -174,12 +174,12 @@ char* infix2postfix_sf(char *infix) { //4
             top++;
             *(stack+top) = *infix;
         } else if (*infix == ')') {
-            while (*(stack+top) != '(') {
+            while (top >= 0 && *(stack+top) != '(') {
                 *output = *(stack+top);
                 output++;
                 top--;
             }
-            top--;
+            if (top >= 0 && *(stack+top) == '(') top--;
         } 
         else if (isalpha(*infix)) {
             *output = *infix;
@@ -189,7 +189,7 @@ char* infix2postfix_sf(char *infix) { //4
                 top++;
                 *(stack+top) = *infix;
             } else {
-                while(calculatePrecedence(*infix) <= calculatePrecedence(*(stack+top))) {
+                while (top >= 0 && *(stack+top) != '(' && calculatePrecedence(*infix) <= calculatePrecedence(*(stack+top))) {
                     *output = *(stack+top);
                     output++;
                     top--;
@@ -212,7 +212,7 @@ char* infix2postfix_sf(char *infix) { //4
 
 matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) { //5
     char* math = infix2postfix_sf(expr);
-    matrix_sf** stack = malloc(strlen(math) * sizeof(matrix_sf*));
+    matrix_sf** stack = malloc((strlen(math) + 1) * sizeof(matrix_sf*));
     int top = -1;
     
     char* original = math;
@@ -237,7 +237,7 @@ matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) { //5
                 matrix_sf* operand1 = *(stack+top);
                 top--;
                 matrix_sf* operand2 = *(stack+top);
-                *(stack+top) = add_mats_sf(operand1, operand2);
+                *(stack+top) = add_mats_sf(operand2, operand1);
                 if (operand2->name == '@') free(operand2);
                 if (operand1->name == '@') free(operand1);
             }
@@ -261,8 +261,9 @@ bst_sf *find_node(bst_sf* root, matrix_sf* matrix) {
         return left_child;
     }
     if (right_child != NULL) {
-        return left_child;
+        return right_child;
     }
+    return NULL;
 }
 
 matrix_sf *execute_script_sf(char *filename) { //6
@@ -284,9 +285,12 @@ matrix_sf *execute_script_sf(char *filename) { //6
         root = insert_bst_sf(result, root);
     }
     free(line);
-    find_node(root, result)->mat = NULL;
-    free_bst_sf(root);
+    if (root != NULL && result != NULL) {
+        bst_sf *n = find_node(root, result);
+        if (n != NULL) n->mat = NULL;
+    }
     fclose(fp);
+    free_bst_sf(root);
     return result;
 }
 
