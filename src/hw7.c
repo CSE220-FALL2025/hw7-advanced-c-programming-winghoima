@@ -105,7 +105,7 @@ matrix_sf* transpose_mat_sf(const matrix_sf *mat) { //1
     int newValues[] = mat->values;
     for (int row = 0; row < cols; row++) {
         for (int col = 0; col < rows; col++) {
-            newValues[row * rows + col] = mat[col * cols + row];
+            newValues[row * rows + col] = mat->values[col * cols + row];
         }
     }
     mat3->name = 'C';
@@ -152,12 +152,13 @@ int calculatePrecendence(char operator) {
 
 char* infix2postfix_sf(char *infix) { //4
     int length = strlen(infix);
-    char *output = malloc(length * 3);
+    char *output = malloc(length * 2 + 1);
     char *result = output;
     char *stack = malloc(length);
     int open = -1; // location of first parenthesis
     int top = -1;
     while (*infix != '\0') {
+        if (*infix == ' ') continue;
         if (*infix == '(') {
             top++;
             *(stack+top) = *infix;
@@ -199,16 +200,72 @@ char* infix2postfix_sf(char *infix) { //4
         output++;
         top--;
     }
-
+    *output = '\0';
+    free(stack);
     return result;
 }
 
+int bstNodes(bst_sf* root) {
+    if (root == NULL) return 0;
+    return 1 + bstNodes(root->right_child) + bst(bstNodes(root->left_child));
+}
+
 matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) { //5
-    return NULL;
+    matrix_sf** stack = malloc(bstNodes(root));
+    int top = -1;
+    char* math = infix2postfix_sf(expr);
+    char* original = math;
+
+    while(*math != '\0') {
+        if (isalph(*math)) {
+            top++;
+            *(stack+top) = find_bst_sf(*math, root);
+        } else {
+            if (*math == '\'') {
+                matrix_sf* operand = *(stack+top);
+                *(stack+top) = transpose_mat_sf(operand);
+            } else if (*math == '*') {
+                matrix_sf* operand1 = *(stack+top);
+                top--;
+                matrix_sf* operand2 = *(stack+top);
+                *(stack+top) = mult_mats_sf(operand1, operand2);
+            } else {
+                matrix_sf* operand1 = *(stack+top);
+                top--;
+                matrix_sf* operand2 = *(stack+top);
+                *(stack+top) = add_mats_sf(operand1, operand2);
+            }
+        }
+    }
+
+    matrix_sf* result = *stack;
+    result->name = name;
+    free(original);
+    free(stack);
+    return result;
 }
 
 matrix_sf *execute_script_sf(char *filename) { //6
-   return NULL;
+    FILE *fp = fopen(filename, "r");
+    char *line = malloc(MAX_LINE_LEN);
+    char *pointer = line;
+    size_t max_line_size = MAX_LINE_LEN;
+    bst_sf* root;
+    matrix_sf* result;
+    while(getline(&line, &max_line_size, fp)) {
+        char name = *line;
+        while(*line == ' ' || *line == '=') name++;
+        if (isdigit(*line)) {
+            result = create_matrix_sf(name, line);
+        } else {
+            result = evaluate_expr_sf(name, line, root);
+        }
+        insert_bst_sf(result, root);
+        line = pointer;
+    }
+    free(line);
+    free_bst_sf(root);
+    return result;
 }
 
 // This is a utility function used during testing. Feel free to adapt the code to implement some of
